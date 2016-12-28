@@ -15,7 +15,7 @@
         decimal_digits = x_str.length;
       }
 
-      cont.append('<input id="in_' + id + '" class="range1"  type="range" style="" min="' + minval + '" max="' + maxval + '" step="' + step + '" value="' + minval + '"><input id="out_' + id + '" class="range2" type="range" style="" min="' + minval + '" max="' + maxval + '" step="' + step + '" value="' + maxval + '"><div id="dualBar" class="ctrlBar"><div  class="handle1"></div><div class="rangebg"></div><div  class="handle2" ></div></div>');
+      cont.append('<input id="in_' + id + '" class="range1"  type="range" style="display:none;" min="' + minval + '" max="' + maxval + '" step="' + step + '" value="' + minval + '"><input id="out_' + id + '" class="range2" type="range" style="display:none;" min="' + minval + '" max="' + maxval + '" step="' + step + '" value="' + maxval + '"><div class="dualBar"><div  class="handle1"></div><div class="rangebg"></div><div  class="handle2" ></div></div>');
 
       var handle1 = cont.find('.handle1');
       var handle2 = cont.find('.handle2');
@@ -113,7 +113,7 @@
       handle2.on('mousedown', function(e) {
         e.preventDefault();
         isDragh2 = true;
-        // isDragh1 = false; 
+
         updateh2(e.pageX);
       });
       $(document).on('mouseup', function(e) {
@@ -122,7 +122,7 @@
           isDragh1 = false;
           isDragh2 = false;
           updateh1(e.pageX);
-          //updatebar(e.pageX);
+     
         }
         if (isDragh2) {
           isDragh2 = false;
@@ -131,12 +131,48 @@
         }
       });
 
-      $(document).mousemove(function(e) {
+      $(document).on('mousemove',function(e) {
         if (isDragh1) {
           updateh1(e.pageX);
-          // console.log(e.pageX);
+   
         } else if (isDragh2) {
           updateh2(e.pageX);
+        }
+      });
+      
+            handle1.on('touchstart', function(e) {
+        e.preventDefault();
+        isDragh1 = true;
+
+        updateh1(e.pageX);
+      });
+      handle2.on('touchstart', function(e) {
+        e.preventDefault();
+        isDragh2 = true;
+
+        updateh2(e.originalEvent.touches[0].pageX);
+      });
+      $(document).on('touchend', function(e) {
+
+        if (isDragh1) {
+          isDragh1 = false;
+          isDragh2 = false;
+          updateh1(e.originalEvent.touches[0].pageX);
+ 
+        }
+        if (isDragh2) {
+          isDragh2 = false;
+          isDragh1 = false;
+          updateh2(e.originalEvent.touches[0].pageX);
+        }
+      });
+
+      $(document).on('touchmove',function(e) {
+        if (isDragh1) {
+          updateh1(e.originalEvent.touches[0].pageX);
+       
+        } else if (isDragh2) {
+          updateh2(e.originalEvent.touches[0].pageX);
         }
       });
 
@@ -150,7 +186,7 @@
           Number(range2.val(Number(range1.val())));
           handle2.css('left', percentage + '%');
 
-          //range2.trigger("change")
+
         }
         var left = handle1.position().left;
         var right = handle2.position().left;
