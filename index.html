@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>DUAL RANGE</title>
+
+
+
+      <link rel="stylesheet" href="dualrange.css">
+
+<style>
+body {
+  background: #070301;
+  color: #F77828;
+}
+.wrap {
+  position: relative;
+  height: 300px;
+  left: 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="test" data-min="0" data-max="45" data-step="0.1" data-id="dualrange"></div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  <script src="dualrange.js"></script>
+  <script>
+$('.test').dualrange();
+
+
+
+  </script>
+</body>
+
+</html>
