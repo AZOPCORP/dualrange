@@ -26,7 +26,7 @@
       bg.css({
         "left": handle1.position().left,
         "right": handle2.position().left,
-        "width": (handle2.position().left - handle1.position().left) + "px"
+        "width": (handle2.position().left - handle1.position().left)-(handle2.width()) + "px"
       });
 
       var updateh1 = function(x) {
@@ -34,7 +34,7 @@
 
         var position = x - cont.offset().left;
 
-        var percentage = 100 * position / cont.width();
+        var percentage = 100 * position / (cont.width()-handle2.width());
         if (percentage < 0) {
           percentage = 0;
         }
