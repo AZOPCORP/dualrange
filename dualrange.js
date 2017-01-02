@@ -25,7 +25,7 @@
       var bg = cont.find('.rangebg');
       bg.css({
         "left": handle1.position().left,
-        "right": handle2.position().left,
+        "right": handle2.position().left-handle2.width(),
         "width": (handle2.position().left - handle1.position().left)-(handle2.width()) + "px"
       });
 
@@ -50,7 +50,7 @@
           });
         }
         var left = handle1.position().left;
-        var right = handle2.position().left;
+        var right = handle2.position().left-handle2.width();
         bg.css({
           "left": left,
           "right": right,
@@ -80,13 +80,13 @@
         handle2.css({
           "left": percentage + '%'
         });
-        if (handle2.offset().left <= handle1.offset().left) {
+        if ((handle2.offset().left-handle2.width()) <= handle1.offset().left) {
           handle1.css({
             "left": percentage + '%'
           });
         }
         var left = handle1.position().left;
-        var right = handle2.position().left;
+        var right = handle2.position().left-handle2.width();
         if (left < 0) {
           left = 0;
         }
@@ -189,7 +189,7 @@
 
         }
         var left = handle1.position().left;
-        var right = handle2.position().left;
+        var right = handle2.position().left-handle2.width();
         if (left < 0) {
           left = 0;
         }
